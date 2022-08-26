@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-white dark:bg-gray-900">
+ <section class="">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+      <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+          <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Günün Manşeti...</h2>
+      </div> 
+      <div class="blog-container" id="blog-container">
+                         
+      </div>  
+      <center>
+        <button id="more" class="inline-flex items-center font-medium text-white hover:underline text-lg" style="margin:0 auto; background: #365ca3; border-radius:3px; height:35px; width:auto; outline:none; padding:20px;">
+            Daha Fazla...
+        </button>
+      </center>
+  </div>
+</section>
+<script>
+    const datas = <%-JSON.stringify(json) %>;
+    let html = document.createElement("div");
+    html.classList.add("blog_main")
+    datas.articles.forEach(data => {
+    html.innerHTML+= `   
+        <article class="p-6 bg-white bg-cover bg-center my-10 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 post new" style="background-image: url(${data.urlToImage}); background-repeat: no-repeat;background-size: cover;height: 100%;width: 100%;">
+            <div class="w-full h-full flex flex-col justify-center items-center backdrop-blur-2xl">
+            <div class="flex justify-between items-center mb-5" style="margin:5px 0;">
+                  <b class="text-white">${data.publishedAt}</b>
+              </div>
+              <h2 class="mb-2 text-2xl font-bold tracking-tight dark:text-white" style="margin:5px 0;" ><a href="#">${data.title}</a></h2>
+              <p class="mb-5 font-light text-white" style="margin:5px 0;">${data.description}</p>
+              <div class="flex justify-between items-center">
+                  <div class="flex items-center space-x-4">
+                      <span class="font-medium dark:text-blue-400">
+                          ${data.author}
+                      </span>
+                  </div>
+                  <a href="/post/${data._id}" class="inline-flex items-center font-medium text-white  hover:underline" style="margin:5px 20px; background: #365ca3; border-radius:3px; height:35px; width:auto; outline:none; padding:5px;">
+                      Devamı
+                      <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                  </a>
+              </div>
+          </article>
+    `
+  
+});
+
+document.getElementById("blog-container").appendChild(html);
+const posts = document.querySelectorAll(".post");
+let num = 5;
+
+
+
+const show = (number) => {
+    for (let i = 0; i < number; i++) {
+        posts[i].classList.remove("post");
+    }
+}
+
+
+
+show(num);
+
+
+document.getElementById("more").addEventListener("click", () => {
+    let exist = document.getElementsByClassName('post');
+    if (exist.length > 0) {
+        num+= 5
+        show(num)
+        
+    }else{
+        document.getElementById("more").remove();
+    }if (exist.length <= 10) {
+            document.getElementById("more").remove();    
+        }
+})
+
+
+</script>
+
+
+</body>
+</html>
+
