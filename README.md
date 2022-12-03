@@ -1,3 +1,3 @@
 ﻿# my-news-app
 
-You can start project by "npm run start" then you might like to refresh the news, in that case you should run "npm set".
+For run the project, All you have to do is type "npm run start" on command run, after then the project will start and refresh the news each minute.
