@@ -18,7 +18,7 @@ function readJSONFile(filename, callback) {
 }
 
 const getIndexPage = async (req, res) => {
-  readJSONFile("./data/data.json", function (err, json) {
+  readJSONFile("./data.json", function (err, json) {
     if (err) {
       throw err;
     }
@@ -28,7 +28,7 @@ const getIndexPage = async (req, res) => {
 
 const getPostPage = async (req, res) => {
   let id = req.params.uid;
-  readJSONFile("./data/data.json", function (err, json) {
+  readJSONFile("./data.json", function (err, json) {
     if (err) {
       throw err;
     }

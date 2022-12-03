@@ -1,3 +1,4 @@
+console.log("data working.")
 const axios = require("axios");
 const json = require("jsonfile");
 const file = "./data.json";
@@ -29,4 +30,4 @@ const getNews = () => {
   });
 };
 
-setInterval(getNews, 1000 * 60 * 30);
+setInterval(getNews, 1000 * 60);
